@@ -1,0 +1,21 @@
+Vagrant.configure("2") do |config|
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = 2046
+    vb.cpus = 3
+    vb.name = "thehive-client"
+  end
+
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.provision 'file', source: 'xsessionrc', destination: '/tmp/.xsessionrc'
+  config.vm.provision :shell, inline: 'mv /tmp/.xsessionrc /home/ubuntu/.xsessionrc'
+  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder  "../", "/home/ubuntu/turkhive"
+
+
+
+
+end
+
+

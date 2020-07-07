@@ -1,0 +1,2 @@
+xrandr -s 1024x768 &
+terminator --working-dir=~/turkhive & #-e python3 ./sweeps_entries.py &
